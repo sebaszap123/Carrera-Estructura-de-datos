@@ -35,4 +35,13 @@ class Career {
       timesRunned++;
     } while (timesRunned <= this.distance);
   }
+  goal(runner1, runner2) {
+    if (this.runners[0] === this.runners[1]) {
+      console.log(`${runner1} y ${runner2} empataron`);
+    } else if (this.runners[0] > this.runners[1]) {
+      console.log(`${runner1} gano la carrera`);
+    } else {
+      console.log(`${runner2} gano la carrera`);
+    }
+  }
 }
