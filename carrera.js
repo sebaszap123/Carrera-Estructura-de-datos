@@ -29,8 +29,8 @@ class Career {
     this.distance = distance;
   }
   doCareer() {
-    let timesRunned = false;
-    while (timesRunned === false) {
+    let equalRuns = false;
+    while (equalRuns === false) {
       // conteo de avance del corredor
       this.runners[0] += this.run.running();
       // Dice lo que recorrio el corredor 1
@@ -40,27 +40,33 @@ class Career {
       this.sayRunning(this.runner2, this.runners[1]);
       // conteo de las veces que a corrido
       this.runnerRuned1.push(this.runners[0]);
-      timesRunned = this.checkRunnedTimes();
+      if (this.distance <= this.runners[0]) {
+        equalRuns = this.checkRunnedTimes();
+      }
       this.runnerRuned2.push(this.runners[1]);
-      timesRunned = this.checkRunnedTimes();
+      if (this.distance <= this.runners[1]) {
+        equalRuns = this.checkRunnedTimes();
+      }
     }
     this.goal();
   }
   checkRunnedTimes() {
-    if (this.distance < this.runners[0] || this.distance < this.runners[1]) {
-      if (this.runnerRuned1.length === this.runnerRuned2.length) {
-        return true;
-      } else if (this.runnerRuned1.length > this.runnerRuned2.length) {
-        return false;
-      } else if (this.runnerRuned1.length < this.runnerRuned2.length) {
-        // Un chance mas de correr a corredor1
-        this.runners[0] += this.run.running();
-        return true;
-      }
+    if (this.runnerRuned1.length === this.runnerRuned2.length) {
+      return true;
+    } else if (this.runnerRuned1.length < this.runnerRuned2.length) {
+      return false;
+    } else if (this.runnerRuned1.length > this.runnerRuned2.length) {
+      // Un chance mas de correr a corredor1
+      this.runners[1] += this.run.running();
+      return true;
     }
+    console.log(this.runners[0], this.runners[1]);
   }
   goal() {
-    if (this.runners[0] === this.runners[1]) {
+    if (
+      (this.runners[0] >= 100 && this.runners[1] >= 100) ||
+      this.runners[0] === this.runners[1]
+    ) {
       console.log(`${this.runner1} y ${this.runner2} empataron`);
     } else if (this.runners[0] > this.runners[1]) {
       console.log(`${this.runner1} gano la carrera`);
@@ -69,7 +75,7 @@ class Career {
     }
   }
   sayRunning(runner, runned) {
-    console.log(`el corredor ${{ runner }} avanzo ${runned} metros`);
+    console.log(`el corredor ${runner} avanzo ${runned} metros`);
   }
 }
 
