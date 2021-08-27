@@ -16,32 +16,56 @@ class Run {
   }
 }
 
-let newCarrer = new Run(arrMoves);
-console.log(newCarrer.running());
+let forRun = new Run(arrMoves);
 
 class Career {
   constructor(run, distance) {
     this.run = run;
     this.runners = [0, 0];
+    this.runnerRuned1 = []
+    this.runnerRuned2 = [];
     this.runner1 = "Paola";
     this.runner2 = "Ximena";
     this.distance = distance;
   }
   doCareer() {
-    let timesRunned = 0;
-    do {
+    let timesRunned = false;
+    while (timesRunned === false) {
+      // conteo de avance del corredor
       this.runners[0] += this.run.running();
       this.runners[1] += this.run.running();
-      timesRunned++;
-    } while (timesRunned <= this.distance);
+      // conteo de las veces que a corrido
+      this.runnerRuned1.push(this.runners[0]);
+      timesRunned = this.checkRunnedTimes();
+      this.runnerRuned2.push(this.runners[1]);
+      timesRunned = this.checkRunnedTimes();
+    };
+    this.goal()
   }
-  goal(runner1, runner2) {
+  checkRunnedTimes(){
+    if (this.distance < this.runners[0] || this.distance < this.runners[1]) {
+      if (this.runnerRuned1.length === this.runnerRuned2.length) {
+        return true;
+      } else if (this.runnerRuned1.length > this.runnerRuned2.length) {
+        return false;
+      } else if(this.runnerRuned1.length < this.runnerRuned2.length){
+        // Un chance mas de correr a corredor1
+        this.runners[0] += this.run.running();
+        return true;
+      }
+    }
+    
+  }
+  goal() {
     if (this.runners[0] === this.runners[1]) {
-      console.log(`${runner1} y ${runner2} empataron`);
+      console.log(`${this.runner1} y ${this.runner2} empataron`);
     } else if (this.runners[0] > this.runners[1]) {
-      console.log(`${runner1} gano la carrera`);
+      console.log(`${this.runner1} gano la carrera`);
     } else {
-      console.log(`${runner2} gano la carrera`);
+      console.log(`${this.runner2} gano la carrera`);
     }
   }
 }
+
+let newCareer = new Career(forRun, 100);
+newCareer.doCareer();
