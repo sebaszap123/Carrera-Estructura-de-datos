@@ -21,11 +21,15 @@ let forRun = new Run(arrMoves);
 class Career {
   constructor(run, distance) {
     this.run = run;
+    // Marcador de la distancia que recorren los corredores
     this.runners = [0, 0];
+    // Veces corridas y cuanto corrio
     this.runnerRuned1 = [];
     this.runnerRuned2 = [];
+    // Nombre corredores
     this.runner1 = "Paola";
     this.runner2 = "Ximena";
+    // Distancia total a recorrer
     this.distance = distance;
   }
   doCareer() {
@@ -75,7 +79,7 @@ class Career {
     }
   }
   sayRunning(runner, runned) {
-    console.log(`el corredor ${runner} avanzo ${runned} metros`);
+    console.log(`El/La corredor(a) ${runner} avanzo ${runned} metros`);
   }
 }
 
