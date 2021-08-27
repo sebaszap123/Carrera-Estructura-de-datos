@@ -33,7 +33,11 @@ class Career {
     while (timesRunned === false) {
       // conteo de avance del corredor
       this.runners[0] += this.run.running();
+      // Dice lo que recorrio el corredor 1
+      this.sayRunning(this.runner1, this.runners[0]);
       this.runners[1] += this.run.running();
+      // dice lo que avanzo el corredor 2
+      this.sayRunning(this.runner2, this.runners[1]);
       // conteo de las veces que a corrido
       this.runnerRuned1.push(this.runners[0]);
       timesRunned = this.checkRunnedTimes();
@@ -64,8 +68,8 @@ class Career {
       console.log(`${this.runner2} gano la carrera`);
     }
   }
-  sayRunning(runner, runned){
-    console.log(`el corredor ${{runner}} avanzo ${runned} metros`)
+  sayRunning(runner, runned) {
+    console.log(`el corredor ${{ runner }} avanzo ${runned} metros`);
   }
 }
 
